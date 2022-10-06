@@ -1,0 +1,30 @@
+---
+version:         '3.8'
+
+services:
+  dynamodb:
+    image:       amazon/dynamodb-local:latest
+    command:     -jar DynamoDBLocal.jar -sharedDb -dbPath ./data
+    working_dir: /home/dynamodblocal
+    ports:
+      - 8000:8000
+    volumes:
+      - ./docker/dynamodb:/home/dynamodblocal/data
+
+# DYNAMO_ENDPOINT=http://127.0.0.1:8000 dynamodb-admin
+
+#  dynamodb:
+#    image: instructure/dynamo-local-admin
+#    ports:
+#      - "8000:8000"
+#      - "8001:8001"
+#      - "8002:8002"
+
+#  jets:
+#    image: ngsnonprod.azurecr.io/ngs-inv8:1.0.2
+#    environment:
+#      JETS_ENV:              production
+#      AWS_ACCESS_KEY_ID:     AKIAIFPYRGYVZNEGLLHA
+#      AWS_SECRET_ACCESS_KEY: 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
+#    ports:
+#      - "8888:8888"
